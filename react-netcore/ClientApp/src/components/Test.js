@@ -4,8 +4,10 @@ class Test extends Component {
     constructor(props) {
         super(props);
         this.state = {
+            name: '',
+            description: '',
             isLoaded: false,
-            search: ''
+            search: '',
         }
     }
     componentDidMount() {
@@ -34,15 +36,27 @@ class Test extends Component {
                     <label htmlFor="search">Search</label>
                     <input className="form-control col-sm-6" id="search" type="text" placeholder="search..." onChange={this.onchange} />
                 </div>
-                
-                <ul>
+                <table>
+                <tbody>
                     {items.map(item => (
-                        <li key={item.hotelId}>
-                            Name: {item.name} | Description: {item.description}
-                        </li>
+                        <tr key={item.hotelId}>
+                        <td>
+                            Name: {item.name}
+                        </td>  
+                        <td>
+                            Description: {item.description}
+                        </td>
+                        <td>
+                        <button label="Delete Item" >Delete</button>
+                        </td>
+                        </tr>
+                
                     ))}
-                </ul>
+                </tbody>
+                </table>
             </div>
+
+
         );
     }
 }

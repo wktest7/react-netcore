@@ -9,20 +9,26 @@ class Add extends Component {
         this.state = {
             hotelId: '',
             name: '',
-            description: ''
+            description: '',
         }
     }
 
-    addHotel() {
+    addHotel(e) {
+        e.preventDefault();
         const hotel = {
             hotelId: this.state.hotelId,
             name: this.state.name,
             description: this.state.description };
         this.props.addHotel(hotel);
+        this.setState({
+            hotelId: '',
+            name: '',
+            description: ''
+          });
+
     }
 
     render() {
-
         return (
             <form>
                 <h1>Add hotel</h1>
