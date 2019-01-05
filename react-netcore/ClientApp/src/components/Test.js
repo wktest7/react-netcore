@@ -40,7 +40,7 @@ class Test extends Component {
                 
                 <ul>
                     {items.map(item => (
-                        <li key="{item.hotelId}">
+                        <li key={item.hotelId}>
                             Name: {item.name} | Description: {item.description}
                         </li>
                     ))}
