@@ -3,7 +3,6 @@ import { actionCreators } from '../store/Hotel';
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
 
-
 class Add extends Component {
     constructor(props) {
         super(props);
@@ -43,9 +42,6 @@ class Add extends Component {
                     <input className="form-control col-sm-6" id="hotelDescription" type="text" value={this.state.description} onChange={(ev) => this.setState({ description: ev.target.value })} />
                 </div>
                 <button className="btn btn-primary" onClick={this.addHotel.bind(this)}>Add</button>
-
-
-
             </form>
         )
     }
