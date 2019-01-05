@@ -4,9 +4,6 @@ class Test extends Component {
     constructor(props) {
         super(props);
         this.state = {
-            name: '',
-            description: '',
-            items: [],
             isLoaded: false,
             search: ''
         }
