@@ -3,11 +3,13 @@ import thunk from 'redux-thunk';
 import { routerReducer, routerMiddleware } from 'react-router-redux';
 import * as Counter from './Counter';
 import * as WeatherForecasts from './WeatherForecasts';
+import * as Hotel from './Hotel';
 
 export default function configureStore (history, initialState) {
   const reducers = {
     counter: Counter.reducer,
-    weatherForecasts: WeatherForecasts.reducer
+    weatherForecasts: WeatherForecasts.reducer,
+    hotels: Hotel.reducer
   };
 
   const middleware = [
