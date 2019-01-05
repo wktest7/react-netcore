@@ -66,14 +66,32 @@ namespace react_netcore.Controllers
 
         // PUT: api/Hotels/5
         [HttpPut("{id}")]
-        public void Put(int id, [FromBody] string value)
+        public IActionResult Put(int id, [FromBody] Hotel editHotel)
         {
+            var hotel = hotels.FirstOrDefault(x => x.HotelId == id);
+            if (hotel == null)
+            {
+                return BadRequest();
+            }
+            hotel.HotelId = editHotel.HotelId;
+            hotel.Name = editHotel.Name;
+            hotel.Description = editHotel.Description;
+
+            return NoContent();
         }
 
         // DELETE: api/ApiWithActions/5
         [HttpDelete("{id}")]
-        public void Delete(int id)
+        public IActionResult Delete(int id)
         {
+            var hotel = hotels.FirstOrDefault(x => x.HotelId == id);
+            if (hotel == null)
+            {
+                return BadRequest();
+            }
+            hotels.Remove(hotel);
+
+            return NoContent();
         }
     }
 }
