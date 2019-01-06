@@ -75,7 +75,11 @@ export const actionCreators = {
     deleteHotel: (hotel) => async (dispatch, getState) => {
         const baseURL = "/api/hotels";
 
-        fetch(baseURL + "/" + hotel.hotelId, {
+        const data = JSON.stringify(
+            { hotelId: hotel.hotelId, name: hotel.name, description: hotel.description }
+        );
+
+        fetch(baseURL + "/" + data.hotelId, {
             method: "DELETE",
             headers: {
                 Accept: "application/json",
