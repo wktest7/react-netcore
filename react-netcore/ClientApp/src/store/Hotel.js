@@ -72,11 +72,11 @@ export const actionCreators = {
             });
     },
 
-    deleteHotel: (hotel) => async (dispatch, getState) => {
+    deleteHotel: (id) => async (dispatch, getState) => {
         const baseURL = "/api/hotels";
-        alert("aa: " + hotel.hotelId);
+        alert("id: " + id);
 
-        fetch(baseURL + "/" + hotel.hotelId, {
+        fetch(baseURL + "/" + id, {
             method: "DELETE",
             headers: {
                 Accept: "application/json",

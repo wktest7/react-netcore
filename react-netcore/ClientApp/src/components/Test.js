@@ -52,15 +52,9 @@ class Test extends Component {
         this.setState({ editing: '' });
     }
 
-    handleHotelDelete(hotel) {
-        this.props.deleteHotel(hotel);
-    }
-
-    handleDeleteItem(hotel) {
-      
-        alert(hotel.hotelId);
-
-        this.handleHotelDelete(hotel);
+    handleDeleteItem(id) {
+        alert("id hotelu: " + id);
+        this.props.deleteHotel(id);
     }
 
     onchange = e => {
@@ -89,7 +83,7 @@ class Test extends Component {
                             Description: {item.description}
                         </td>
                                 <td>
-                                    <button onClick={this.handleDeleteItem.bind(this, item)} label="Delete Item" >Delete</button>
+                                    <button onClick={this.handleDeleteItem.bind(this, item.hotelId)} label="Delete Item" >Delete</button>
                         </td>
                         </tr>
                 
