@@ -1,15 +1,20 @@
 import React, { Component } from 'react';
+import { actionCreators } from '../store/Hotel';
+import { bindActionCreators } from 'redux';
+import { connect } from 'react-redux';
 
 class Test extends Component {
-    constructor(props) {
-        super(props);
-        this.state = {
+
+        state = {
+            hotelId: '',
             name: '',
             description: '',
             isLoaded: false,
             search: '',
-        }
+            editing: ''
+        
     }
+
     componentDidMount() {
         fetch('api/hotels')
             .then(res => res.json())
@@ -19,6 +24,44 @@ class Test extends Component {
                     items: json
                 })
             });
+    }
+
+    handleHotelUpdate(hotel) {
+        this.props.updateHotel(hotel);
+        setTimeout(this.props.requestHotels, 500);
+    }
+    
+    handleEditField(event) {
+        if (event.keyCode === 13) {
+            let target = event.target,
+                update = {};
+
+            update.name = this.state.editing;
+            update[target.name] = target.value;
+        }
+    }
+
+    handleEditItem() {
+        let itemId = this.state.editing;
+
+        var editHotel = this.props.hotels.find((v) => v.name === itemId);
+
+        editHotel.description = this.refs[`description_${itemId}`].value;
+
+        this.handleHotelUpdate(editHotel);
+        this.setState({ editing: '' });
+    }
+
+    handleHotelDelete(hotel) {
+        this.props.deleteHotel(hotel);
+    }
+
+    handleDeleteItem() {
+        let itemId = this.state.editing;
+
+        var deleteHotel = this.props.hotels.find((v) => v.name === itemId);
+
+        this.handleHotelDelete(deleteHotel);
     }
 
     onchange = e => {
@@ -47,7 +90,7 @@ class Test extends Component {
                             Description: {item.description}
                         </td>
                         <td>
-                        <button label="Delete Item" >Delete</button>
+                        <button onClick={this.handleDeleteItem.bind(this)} label="Delete Item" >Delete</button>
                         </td>
                         </tr>
                 
@@ -60,4 +103,7 @@ class Test extends Component {
         );
     }
 }
-export default Test;
+export default connect(
+    state => state.hotels,
+    dispatch => bindActionCreators(actionCreators, dispatch)
+)(Test);
