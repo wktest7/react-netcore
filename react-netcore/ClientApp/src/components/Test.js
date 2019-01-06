@@ -56,14 +56,6 @@ class Test extends Component {
         this.props.deleteHotel(hotel);
     }
 
-    handleDeleteItem() {
-        let itemId = this.state.editing;
-
-        var deleteHotel = this.props.hotels.find((v) => v.name === itemId);
-
-        this.handleHotelDelete(deleteHotel);
-    }
-
     onchange = e => {
         this.setState({ search: e.target.value });
       };
@@ -90,7 +82,7 @@ class Test extends Component {
                             Description: {item.description}
                         </td>
                         <td>
-                        <button onClick={this.handleDeleteItem.bind(this)} label="Delete Item" >Delete</button>
+                        <button onClick={this.handleHotelDelete.bind(this)} label="Delete Item" >Delete</button>
                         </td>
                         </tr>
                 

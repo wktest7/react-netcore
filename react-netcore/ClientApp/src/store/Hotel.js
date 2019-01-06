@@ -59,7 +59,7 @@ export const actionCreators = {
             { hotelId: hotel.hotelId, name: hotel.name, description: hotel.description }
         );
 
-        const fetchTask = fetch(baseURL, {
+        fetch(baseURL, {
             method: "PUT",
             headers: {
                 Accept: "application/json",
@@ -128,14 +128,6 @@ export const reducer = (state, action) => {
         };
     }
 
-    if (action.type === updateHotelType) {
-
-        return {
-            ...state,
-            isLoading: false
-        };
-    }
-
     if (action.type === addHotelType) {
 
         return {
@@ -148,7 +140,6 @@ export const reducer = (state, action) => {
 
         return {
             ...state,
-            currId: action.hotel.hotelId,
             isLoading: false
         };
     }
