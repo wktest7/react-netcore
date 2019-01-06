@@ -74,7 +74,6 @@ export const actionCreators = {
 
     deleteHotel: (id) => async (dispatch, getState) => {
         const baseURL = "/api/hotels";
-        alert("id: " + id);
 
         fetch(baseURL + "/" + id, {
             method: "DELETE",
@@ -85,7 +84,7 @@ export const actionCreators = {
         })
             .then((data) => {
                 dispatch({ type: deleteHotelType });
-            });
+            })
     },
 }
 
@@ -144,5 +143,13 @@ export const reducer = (state, action) => {
             isLoading: false
         };
     }
+    if (action.type === updateHotelType) {
+
+        return {
+            ...state,
+            isLoading: false
+        };
+    }
+
     return state;
 }

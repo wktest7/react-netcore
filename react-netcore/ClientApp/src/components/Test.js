@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import { actionCreators } from '../store/Hotel';
 import { bindActionCreators } from 'redux';
 import { connect } from 'react-redux';
+import { Link } from 'react-router-dom';
 
 class Test extends Component {
 
@@ -25,35 +26,8 @@ class Test extends Component {
                 })
             });
     }
-
-    handleHotelUpdate(hotel) {
-        this.props.updateHotel(hotel);
-        setTimeout(this.props.requestHotels, 500);
-    }
     
-    handleEditField(event) {
-        if (event.keyCode === 13) {
-            let target = event.target,
-                update = {};
-
-            update.name = this.state.editing;
-            update[target.name] = target.value;
-        }
-    }
-
-    handleEditItem() {
-        let itemId = this.state.editing;
-
-        var editHotel = this.props.hotels.find((v) => v.name === itemId);
-
-        editHotel.description = this.refs[`description_${itemId}`].value;
-
-        this.handleHotelUpdate(editHotel);
-        this.setState({ editing: '' });
-    }
-
     handleDeleteItem(id) {
-        alert("id hotelu: " + id);
         this.props.deleteHotel(id);
     }
 
@@ -83,7 +57,8 @@ class Test extends Component {
                             Description: {item.description}
                         </td>
                                 <td>
-                                    <button onClick={this.handleDeleteItem.bind(this, item.hotelId)} label="Delete Item" >Delete</button>
+                                    <button onClick={this.handleDeleteItem.bind(this, item.hotelId)} className="btn btn-danger" >Delete</button>
+                                    <Link to={`/edit/${item.hotelId}`} className="btn btn-success btn-space pull-right">Edit</Link>
                         </td>
                         </tr>
                 

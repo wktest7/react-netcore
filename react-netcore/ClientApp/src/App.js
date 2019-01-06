@@ -6,6 +6,7 @@ import Counter from './components/Counter';
 import FetchData from './components/FetchData';
 import Test from './components/Test';
 import Add from './components/Add';
+import Edit from './components/Edit';
 
 export default () => (
   <Layout>
@@ -14,5 +15,7 @@ export default () => (
     <Route path='/fetch-data/:startDateIndex?' component={FetchData} />
     <Route path='/test' component={Test} />
     <Route path='/add' component={Add} />
+    <Route path='/edit' component={Edit} />
+    
   </Layout>
 );
