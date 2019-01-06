@@ -15,7 +15,7 @@ export default () => (
     <Route path='/fetch-data/:startDateIndex?' component={FetchData} />
     <Route path='/test' component={Test} />
     <Route path='/add' component={Add} />
-    <Route path='/edit' component={Edit} />
+    <Route path='/edit/:id' component={Edit} />
     
   </Layout>
 );

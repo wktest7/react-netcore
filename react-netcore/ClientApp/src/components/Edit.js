@@ -13,6 +13,19 @@ class Edit extends Component {
         }
     }
 
+    componentDidMount() {
+        let id = this.props.match.params.id;
+        fetch('api/hotels/' + id)
+            .then(res => res.json())
+            .then(json => {
+                this.setState({
+                    isLoaded: true,
+                    hotel: json
+                })
+            });
+        //console.log(this.state.hotel.name);
+    }
+
     updateHotel(e) {
         e.preventDefault();
         const hotel = {
@@ -27,18 +40,23 @@ class Edit extends Component {
     }
 
     render() {
+        var { isLoaded, hotel } = this.state;
+        if (!isLoaded) {
+            return <div>Loading...</div>;
+        }
         return (
             <form>
                 <h1>Edit hotel</h1>
 
+                <h2>{this.props.match.params.id}</h2>
                 <div className="form-group">
                     <label htmlFor="hotelName">Name</label>
-                    <input className="form-control col-sm-6" id="hotelName" type="text" value={this.state.name} onChange={(ev) => this.setState({ name: ev.target.value })} />
+                    <input className="form-control col-sm-6" id="hotelName" type="text" value={hotel.name} onChange={(ev) => this.setState({ name: ev.target.value })} />
                 </div>
 
                 <div className="form-group">
                     <label htmlFor="hotelDescription">Description</label>
-                    <input className="form-control col-sm-6" id="hotelDescription" type="text" value={this.state.description} onChange={(ev) => this.setState({ description: ev.target.value })} />
+                    <input className="form-control col-sm-6" id="hotelDescription" type="text" value={hotel.description} onChange={(ev) => this.setState({ description: ev.target.value })} />
                 </div>
                 <button className="btn btn-primary" onClick={this.updateHotel.bind(this)}>Update</button>
             </form>

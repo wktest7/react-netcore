@@ -33,7 +33,8 @@ class Test extends Component {
 
     onchange = e => {
         this.setState({ search: e.target.value });
-      };
+    };
+
 
     render() {
         var { isLoaded, items } = this.state;
