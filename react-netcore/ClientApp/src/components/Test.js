@@ -56,6 +56,13 @@ class Test extends Component {
         this.props.deleteHotel(hotel);
     }
 
+    handleDeleteItem(hotel) {
+      
+        alert(hotel.hotelId);
+
+        this.handleHotelDelete(hotel);
+    }
+
     onchange = e => {
         this.setState({ search: e.target.value });
       };
@@ -81,8 +88,8 @@ class Test extends Component {
                         <td>
                             Description: {item.description}
                         </td>
-                        <td>
-                        <button onClick={this.handleHotelDelete.bind(this)} label="Delete Item" >Delete</button>
+                                <td>
+                                    <button onClick={this.handleDeleteItem.bind(this, item)} label="Delete Item" >Delete</button>
                         </td>
                         </tr>
                 
